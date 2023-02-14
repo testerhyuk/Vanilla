@@ -25,14 +25,14 @@ export default function Nav() {
             </div>
             {/* 검색바 */}
             <div className='searchDiv'>
-            <form className='searchForm'>
+            <div className='searchForm'>
                 <input type='text' placeholder='상품을 검색해보세요' className='searchInput'/>
                 <label className='searchLabel'>
                 <button type='button' className='searchButton'>
                     <FontAwesomeIcon icon={faSearch} className="search" />
                 </button>
                 </label>
-            </form>
+            </div>
             </div>
             {/* 회원 정보 장바구니 */}
             <div className='infoButton'>

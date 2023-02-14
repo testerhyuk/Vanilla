@@ -116,6 +116,7 @@
 }
 
 .cart_button {
+    overflow: hidden;
     box-shadow: rgb(219 219 219 / 30%) 0px 1px 3px 0px;
     font-weight: 400;
     border-radius: 2px;
@@ -154,4 +155,46 @@
     font-size: 16px;
     width: calc((97% - 46px) / 3);
     height: 46px;
+}
+
+.tabUI {
+    text-align: center;
+    border-bottom: 1px solid #3d3d4f;
+    margin: 0 445px;
+    width: 55%;
+}
+
+.menuTab {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    list-style: none;
+}
+
+.menuTab li {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.tabBox {
+    cursor: pointer;
+    background-color: #f3f5f7;
+    display: block;
+    position: relative;
+    height: 42px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 43px;
+    text-align: center;
+}
+
+.active {
+    background-color: #3d3d4f;
+    color: white;
+}
+
+.tabDetail {
+    text-align: center;
+    margin: 20px 445px;
+    width: 55%;
 }
