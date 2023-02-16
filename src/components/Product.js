@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './css/Product.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { showData } from '../redux/Store';
 
 export default function Product() {
-    const [product, setProduct] = useState([]);
+    const product = useSelector((state) => {return state.data})
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchData = async () => {
             axios.get('https://codingapple1.github.io/shop/data2.json')
             .then((res) => {
-                setProduct(res.data)
+                dispatch(showData(res.data))
             })
             .catch ((error) => {
                 console.log(error);
         })}
         fetchData();
     }, [])
-
+    
   return (
     <section className='prodSection'>
         <div className='container'>

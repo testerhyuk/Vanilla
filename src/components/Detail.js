@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import './css/Detail.css'
 
 export default function Detail() {
     const location = useLocation();
-
+    
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(location.state.price);
     const [tab, setTab] = useState(0);
@@ -97,8 +97,20 @@ export default function Detail() {
                             <FontAwesomeIcon icon={faAngleDown} className="quantity_minus" onClick={handleQuantityMinus} />
                         </div>
                     </div>
-                    <button type='button' className='cart_button'>장바구니</button>
-                    <button type='button' className='buy_button'>구매하기</button>
+                    <div className='buy_ctn'>
+                        <Link 
+                            to={`/cart`}
+                            style={{ textDecoration: "none" }}
+                            state={{
+                                productId: location.state.productId, 
+                                title: location.state.title,
+                                price: location.state.price,
+                                quantity: quantity
+                        }}>
+                        <button type='button' className='cart_button'>장바구니</button>
+                        </Link>
+                        <button type='button' className='buy_button'>구매하기</button>
+                    </div>
                 </div>
             </div>
             {/* 탭 UI */}

@@ -5,6 +5,7 @@ import Detail from './components/Detail';
 import Banner from './components/Banner';
 import Product from './components/Product';
 import Footer from './components/Footer';
+import Cart from './components/Cart';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<><Banner /> <Product /></>}/>
         <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='/cart' element={<Cart />} />
       </Routes>
 
       <Footer />
