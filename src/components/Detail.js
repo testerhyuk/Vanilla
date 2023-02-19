@@ -25,6 +25,17 @@ export default function Detail() {
         setPrice(location.state.price * quantity)
     }, [location.state.price, quantity])
 
+    useEffect(() => {
+        let watched = sessionStorage.getItem('watched')
+        watched = JSON.parse(watched)
+        watched.unshift(location.state.productId)
+        watched = new Set(watched)
+        watched = Array.from(watched)
+        sessionStorage.setItem('watched', JSON.stringify(watched))
+        window.dispatchEvent(new Event("storage"));
+    })
+
+
   return (
     <>
         <section className='productDetail'>
