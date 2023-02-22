@@ -44,7 +44,6 @@ export default function Product() {
                                         productId: p.id, 
                                         title: p.title,
                                         price: p.price,
-                                        description: p.content
                                 }}>
                                     <img 
                                         src={"https://codingapple1.github.io/shop/shoes" + (p.id+1) + ".jpg"} 

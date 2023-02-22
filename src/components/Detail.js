@@ -3,6 +3,9 @@ import { Link, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import './css/Detail.css'
+import Nav from './Nav';
+import Footer from './Footer';
+import RecentWatched from './RecentWatched';
 
 export default function Detail() {
     const location = useLocation();
@@ -28,8 +31,9 @@ export default function Detail() {
     useEffect(() => {
         let watched = sessionStorage.getItem('watched')
         watched = JSON.parse(watched)
-        watched.unshift(location.state.productId)
-        watched = new Set(watched)
+        watched.unshift([location.state.productId, location.state.title, price])
+        watched = [...new Set(watched.join("|").split("|"))]
+                    .map((v) => v.split(","))
         watched = Array.from(watched)
         sessionStorage.setItem('watched', JSON.stringify(watched))
         window.dispatchEvent(new Event("storage"));
@@ -38,6 +42,7 @@ export default function Detail() {
 
   return (
     <>
+        <Nav />
         <section className='productDetail'>
             <div className='imgInfo'>
                 <img 
@@ -84,16 +89,6 @@ export default function Detail() {
                             </tbody>
                         </table>
                     </div>
-                    <div className='detailInfo'>
-                        <table className='review'>
-                            <tbody>
-                                <tr>
-                                    <td className='prod_info'>제품 소개</td>
-                                    <td className='prod_info_dt'>{location.state.description}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
                 <div className='totalPriceSection'>
                     <span className='totalPrice'>총 금액</span>
@@ -133,21 +128,13 @@ export default function Detail() {
                         className={'tabBox' + (tab===0 ? ' active' : '')}
                         onClick={() => setTab(0)}
                     >
-                        상세정보
+                        리뷰
                     </span>
                 </li>
                 <li>
                     <span 
                         className={'tabBox' + (tab===1 ? ' active' : '')}
                         onClick={() => setTab(1)}
-                    >
-                        리뷰
-                    </span>
-                </li>
-                <li>
-                    <span 
-                        className={'tabBox' + (tab===2 ? ' active' : '')}
-                        onClick={() => setTab(2)}
                     >
                         Q&A
                     </span>
@@ -156,11 +143,12 @@ export default function Detail() {
         </div>
         <div className='tabDetail'>
             { 
-                tab === 0 ? <div>상세정보를 보여줌</div>
-                : tab === 1 ? <div>리뷰를 보여줌</div>
+                tab === 0 ? <div>리뷰를 보여줌</div>
                 : <div>Q&A를 보여줌</div>
             }
         </div>
+        <Footer />
+        <RecentWatched />
     </>
   )
 }

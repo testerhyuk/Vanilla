@@ -130,3 +130,43 @@
   text-decoration-line: none;
   color: rgb(102, 102, 102);
 }
+
+@keyframes mouseover_menu {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.mouseover_menu {
+  top: 17%;
+  position: absolute;
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+  padding-top: 30px;
+  height: 30%;
+  left: 25%;
+  background-color: white;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+}
+
+.mouseover_menu ul li {
+  animation: mouseover_menu .4s ease;
+  list-style: none;
+  line-height: 40px;
+}
+
+.man_category, .woman_category {
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.mouseover_menu li {
+  cursor: pointer;
+}

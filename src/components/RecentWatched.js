@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import './css/RecentWatched.css'
+import RecentModal from './RecentModal';
+import { setIsClick } from '../redux/Store';
 
 export default function RecentWatched() {
     const [count, setCount] = useState(0);
-    const [recentImg, setRecentImg] = useState(0);
-    const [isClicked, setIsClicked] = useState(false);
+    const isClick = useSelector((state) => {return state.click_recent})
+    const dispatch = useDispatch()
 
     useEffect(() => {
         window.addEventListener('storage', () => {
             setCount(JSON.parse(sessionStorage.getItem('watched')).length)
-            setRecentImg(JSON.parse(sessionStorage.getItem('watched'))[0]+1)
         })
-    }, [count, recentImg])
-
-    const handleModal = () => {
-
-    }
+    }, [count])
     
   return (
     <>
-     { JSON.parse(sessionStorage.getItem('watched')).length === 0 ? 
-     <div>낫띵</div>
+     { JSON.parse(sessionStorage.length) === 0 ? 
+        <div></div>
     : 
-    <div className='floating_wrapper'>
-        <button type='button' className='btn_history' onClick={handleModal}>
-            <span className='img_box'>
-                <img 
-                    src={"https://codingapple1.github.io/shop/shoes" + recentImg + ".jpg"}
-                    alt='최근 본 상품'
-                />
-            </span>
-            <span className='count_recent'>{JSON.parse(sessionStorage.getItem('watched')).length}</span>
-        </button>
-    </div>
-        }
+        <div className='floating_wrapper'>
+            <button type='button' className='btn_history' onClick={() => dispatch(setIsClick(isClick))}>
+                <span className='img_box'>
+                    <img 
+                        src={"https://codingapple1.github.io/shop/shoes" + (parseInt(JSON.parse(sessionStorage.getItem('watched'))[0][0])+1) + ".jpg"}
+                        alt='최근 본 상품'
+                    />
+                </span>
+                <span className='count_recent'>{JSON.parse(sessionStorage.getItem('watched')).length}</span>
+            </button>
+        </div>
+    }
+    {isClick ? <RecentModal /> : <></>}
     </>
     
     )

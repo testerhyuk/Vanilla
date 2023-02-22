@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import './css/Cart.css'
+import Footer from './Footer';
+import Nav from './Nav';
+import RecentWatched from './RecentWatched';
 
 export default function Cart() {
     const location = useLocation();
@@ -21,9 +24,10 @@ export default function Cart() {
 
     useEffect(() => {
         setTotalPrice(location.state ? location.state.price * quantity : null)
-    }, [quantity])
+    }, [quantity, location.state])
   return (
     <div>
+        <Nav />
         {location.state ? <>
         <table className='cartDiv'>
             <thead className='cartHead'>
@@ -49,7 +53,7 @@ export default function Cart() {
                         <p style={{overflow : 'hidden'}}>{location.state.title}</p>
                         </div>
                     </td>
-                    <td>{location.state.price}</td>
+                    <td>{location.state.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</td>
                     <td className='quantity_td'>
                         <input className='product_quantity' type='text' value={quantity} readOnly={true} />
                         <div className='quantity_btn'>
@@ -57,7 +61,7 @@ export default function Cart() {
                             <FontAwesomeIcon icon={faAngleDown} className='downIcon' onClick={handleQuantityMinus} />
                         </div>
                     </td>
-                    <td>{totalPrice}</td>
+                    <td>{totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</td>
                     <td><FontAwesomeIcon icon={faTrashCan} className='trashcanIcon'/></td>
                 </tr>
             </tbody>
@@ -75,6 +79,8 @@ export default function Cart() {
             <p>장바구니에 담긴 상품이 없어요</p>
         </div>
         }
+        <Footer />
+        <RecentWatched />
     </div>
   )
 }
