@@ -17,9 +17,8 @@ export default function RecentWatched() {
     
   return (
     <>
-     { JSON.parse(sessionStorage.length) === 0 ? 
-        <div></div>
-    : 
+        {sessionStorage.watched && JSON.parse(sessionStorage.watched).length > 0 ?
+        
         <div className='floating_wrapper'>
             <button type='button' className='btn_history' onClick={() => dispatch(setIsClick(isClick))}>
                 <span className='img_box'>
@@ -31,6 +30,8 @@ export default function RecentWatched() {
                 <span className='count_recent'>{JSON.parse(sessionStorage.getItem('watched')).length}</span>
             </button>
         </div>
+        :
+        <div></div>
     }
     {isClick ? <RecentModal /> : <></>}
     </>

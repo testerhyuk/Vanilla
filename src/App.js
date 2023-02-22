@@ -11,7 +11,7 @@ function App() {
     const storage = sessionStorage.getItem('watched');
     
     if (!storage) {
-      sessionStorage.setItem('watched', JSON.stringify([]))
+        sessionStorage.setItem('watched', JSON.stringify([]))
     }
   })
 

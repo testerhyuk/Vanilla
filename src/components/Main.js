@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Banner from './Banner'
 import Footer from './Footer'
 import Nav from './Nav'
