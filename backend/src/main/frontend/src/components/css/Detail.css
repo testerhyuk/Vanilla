@@ -1,0 +1,208 @@
+* {
+    user-select: none;
+}
+
+.productDetail {
+    display: flex;
+    padding: 20px 150px;
+    margin: 0 300px;
+    width: 70%;
+}
+
+.imgInfo {
+    padding-right: 100px;
+}
+
+.productImg {
+    width: 500px;
+    height: 560px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
+    border: 1px solid rgb(245, 245, 245);
+}
+
+.buyInfo {
+    padding: 16px;
+    width: 600px;
+    height: 560px;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
+    border: 1px solid rgb(245, 245, 245);
+}
+
+.productTitle {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.ProductPrice {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.detailInfo {
+    padding-bottom: 8px;
+}
+
+.review {
+    table-layout: fixed;
+    width: 80%;
+}
+
+.prod_info {
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+}
+
+.prod_info_dt {
+    font-size: 14px;
+}
+
+.totalPriceSection {
+    padding-top: 30px;
+}
+
+.totalPrice {
+    margin: 0px;
+    padding-right: 115px;
+    border: 0px;
+    vertical-align: baseline;
+    font-weight: bold;
+}
+
+.varPrice {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.buyButton {
+    padding-top: 30px;
+}
+
+.quantity_box {
+    padding-bottom: 50px;
+    display: flex;
+}
+
+.prod_quantity {
+    text-align: center;
+    border: 1px solid lightgray;
+    width: 61px;
+    height: 40px;
+    background: transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border-right: 1px solid #eee;
+    color: #111;
+    line-height: 25px;
+    padding: 11px 0 9px 0;
+}
+
+.quantity {
+    font-weight: bold;
+    padding-right: 135px;
+}
+
+.quantity_button {
+    display: flex;
+    flex-direction: column;
+    padding-left: 3px;
+    padding-top: 5px;
+    width: 25px;
+}
+
+.quantity_plus {
+   cursor: pointer;
+}
+
+.quantity_minus {
+   cursor: pointer;
+}
+
+.buy_ctn {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cart_button {
+    overflow: hidden;
+    box-shadow: rgb(219 219 219 / 30%) 0px 1px 3px 0px;
+    font-weight: 400;
+    border-radius: 2px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(217, 217, 217);
+    margin: 0px 1% 0px 0px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+    font-size: 16px;
+    width: 130px;
+    height: 46px;
+    display: block;
+    padding: 0px;
+    line-height: 44px;
+}
+
+.buy_button {
+    box-shadow: rgb(219 219 219 / 30%) 0px 1px 3px 0px;
+    font-weight: 400;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    margin: 0px 1% 0px 0px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background: rgb(241, 195, 51);
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 0px;
+    line-height: 44px;
+    font-size: 16px;
+    width: 130px;
+    height: 46px;
+}
+
+.tabUI {
+    text-align: center;
+    border-bottom: 1px solid #3d3d4f;
+    margin: 0 445px;
+    width: 55%;
+}
+
+.menuTab {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    list-style: none;
+}
+
+.menuTab li {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.tabBox {
+    cursor: pointer;
+    background-color: #f3f5f7;
+    display: block;
+    position: relative;
+    height: 42px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 43px;
+    text-align: center;
+}
+
+.active {
+    background-color: #3d3d4f;
+    color: white;
+}
+
+.tabDetail {
+    text-align: center;
+    margin: 20px 445px;
+    width: 55%;
+}
