@@ -4,10 +4,18 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './css/Nav.css'
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Nav() {
     const [onOver, setOnOver] = useState(false);
     const navigate = useNavigate();
+    const cartList = useSelector((state) => state.cart);
+    const [searchKeyword, setSearchKeyword] = useState('');
+
+    const handleChange = (e) => {
+        setSearchKeyword(e.target.value)
+        navigate(`/search?keyword=${e.target.value}`)
+    }
 
   return (
     <>
@@ -28,7 +36,7 @@ export default function Nav() {
             {/* 검색바 */}
             <div className='searchDiv'>
             <div className='searchForm'>
-                <input type='text' placeholder='상품을 검색해보세요' className='searchInput'/>
+                <input type='text' placeholder='상품을 검색해보세요' className='searchInput' value={searchKeyword} onChange={handleChange}/>
                 <label className='searchLabel'>
                 <button type='button' className='searchButton'>
                     <FontAwesomeIcon icon={faSearch} className="search" />
@@ -44,7 +52,12 @@ export default function Nav() {
             </button>
             <button type='button' className='cartInfo'>
                 <Link to={'/cart'} className='cart-btn'>
-                    <FontAwesomeIcon icon={faShoppingCart} className='cartIcon'/>
+                    {cartList.length > 0 ?
+                        <span className='count_cart'>{cartList.length}</span>
+                        :
+                        null
+                    }
+                    <span><FontAwesomeIcon icon={faShoppingCart} className='cartIcon'/></span>
                     장바구니
                 </Link>
             </button>

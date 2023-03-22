@@ -1,20 +1,33 @@
 import { faAngleDown, faAngleUp, faCircleExclamation, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addCount, deleteCart, minusCount } from '../redux/Store';
+import { Link } from 'react-router-dom';
+import { addCount, deleteCart, isCheck, minusCount } from '../redux/Store';
 import './css/Cart.css'
-import Footer from './Footer';
-import Nav from './Nav';
-import RecentWatched from './RecentWatched';
 
 export default function Cart() {
     const cartList = useSelector((state) => state.cart)
     const dispatch = useDispatch();
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    const boolChecked = (id) => {
+        dispatch(isCheck(id))
+    }
+
+    useEffect(() => {
+        const checked = cartList.filter((a) => a.check === true)
+        let sum = 0
+        checked.forEach((c) => {
+            sum += (c.price * c.quantity)
+        })
+        setTotalPrice(sum)
+    }, [cartList])
+
+    
     
   return (
     <div>
-        <Nav />
         {cartList.length > 0 ? <>
         <table className='cartDiv'>
             <thead className='cartHead'>
@@ -30,7 +43,13 @@ export default function Cart() {
                 {cartList.map((it, i) => {
                     return (
                         <tr key={i}>
-                            <td><input type='checkbox'></input></td>
+                            <td>
+                                <input 
+                                    type='checkbox' 
+                                    onClick={() => {boolChecked(cartList[i].id)}}
+                                    onChange={(e) => localStorage.setItem(cartList[i].id, e.target.checked)}
+                                />
+                            </td>
                             <td>
                                 <div className='pname'>
                                 <img 
@@ -38,7 +57,9 @@ export default function Cart() {
                                     alt={it.id}
                                     className='pname_img'
                                 />
-                                <p style={{overflow : 'hidden'}}>{it.title}</p>
+                                <Link to={`/detail/${it.id}`} style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                                    <p style={{overflow : 'hidden'}}>{it.title}</p>
+                                </Link>
                                 </div>
                             </td>
                             <td className='cart_price'>
@@ -60,7 +81,10 @@ export default function Cart() {
             </tbody>
         </table>
         <div className='total-price'>
-            {/* <span>총 결제 금액 : {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span> */}
+            <span>총 결제 금액 : </span>
+            <span>
+                {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+            </span>
         </div>
         <div className='buy_product'>
             <button className='buy_product_btn'>구매하기</button>
@@ -72,8 +96,6 @@ export default function Cart() {
             <p>장바구니에 담긴 상품이 없어요</p>
         </div>
         }
-        <Footer />
-        <RecentWatched />
     </div>
   )
 }

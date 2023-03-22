@@ -3,11 +3,9 @@ import { useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import './css/Detail.css'
-import Nav from './Nav';
-import Footer from './Footer';
-import RecentWatched from './RecentWatched';
 import { useDispatch } from 'react-redux';
 import { insertItem } from '../redux/Store';
+import CartModal from './CartModal';
 
 export default function Detail() {
     const location = useLocation();
@@ -16,6 +14,7 @@ export default function Detail() {
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(location.state.price);
     const [tab, setTab] = useState(0);
+    const [modal, setModal] = useState(false);
 
     const handleQuantityPlus = () => {
         setQuantity(quantity+1)
@@ -45,7 +44,7 @@ export default function Detail() {
 
   return (
     <>
-        <Nav />
+        {modal === true ? <CartModal modal={modal} setModal={setModal} /> : null}
         <section className='productDetail'>
             <div className='imgInfo'>
                 <img 
@@ -62,16 +61,6 @@ export default function Detail() {
                     <h3 className='ProductPrice'>{location.state.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</h3>
                 </div>
                 <div>
-                    <div className='detailInfo'>
-                        <table className='review'>
-                            <tbody>
-                                <tr>
-                                    <td className='prod_info'>구매 후기</td>
-                                    <td className='prod_info_dt'>정보없음</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div className='detailInfo'>
                         <table className='review'>
                             <tbody>
@@ -117,8 +106,10 @@ export default function Detail() {
                                         title: location.state.title,
                                         price: location.state.price,
                                         quantity: quantity,
+                                        check: false,
                                     })
                                 )
+                                setModal(true);
                             }}
                         >
                             장바구니
@@ -155,8 +146,6 @@ export default function Detail() {
                 : <div>Q&A를 보여줌</div>
             }
         </div>
-        <Footer />
-        <RecentWatched />
     </>
   )
 }

@@ -1,0 +1,8 @@
+.no-results {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: black;
+    height: 100%;
+    padding: 8rem;
+  }

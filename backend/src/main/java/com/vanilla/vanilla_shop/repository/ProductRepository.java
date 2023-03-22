@@ -18,8 +18,12 @@ public class ProductRepository{
                 .getResultList();
     }
 
-    public Product findById(Long id) {
-        return em.find(Product.class, id);
+    public List<Product> findProdByKeyword(String keyword) {
+        return em.createQuery(
+                "select p from Product p where title like :keyword"
+                , Product.class
+                ).setParameter("keyword", "%"+keyword+"%")
+                .getResultList();
     }
 
     public List<Product> findProductByCat(String sex, String cat) {

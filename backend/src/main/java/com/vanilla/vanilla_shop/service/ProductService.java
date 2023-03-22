@@ -18,8 +18,8 @@ public class ProductService {
         return productRepository.findTopTen();
     }
 
-    public Product findById(Long productId) {
-        return productRepository.findById(productId);
+    public List<Product> findByKeyword(String keyword) {
+        return productRepository.findProdByKeyword(keyword);
     }
 
     public List<Product> findProductByCategory(String sex, String cat) {

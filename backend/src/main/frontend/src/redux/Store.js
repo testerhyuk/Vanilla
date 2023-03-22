@@ -40,7 +40,11 @@ const cart = createSlice({
         deleteCart(state, action) {
             const item = state.filter((a) => a.id !== action.payload);
             return item;
-        }
+        },
+        isCheck(state, action) {
+            const boolCheck = state.findIndex((a) => a.id === action.payload);
+            state[boolCheck].check = !state[boolCheck].check
+        },
     },
 })
 
@@ -80,13 +84,6 @@ export const { insertItem } = cart.actions
 export const { addCount } = cart.actions
 export const { minusCount } = cart.actions
 export const { deleteCart } = cart.actions
-
-// export default configureStore({
-//     reducer : {
-//         data : data.reducer,
-//         click_recent : click_recent.reducer,
-//         cart : cart.reducer,
-//     }
-// })
+export const { isCheck } = cart.actions
 
 export default store;

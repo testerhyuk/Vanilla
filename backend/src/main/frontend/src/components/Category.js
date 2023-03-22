@@ -5,10 +5,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { showData } from '../redux/Store'
-import Nav from './Nav'
 import './css/Product.css'
-import Footer from './Footer'
-import RecentWatched from './RecentWatched'
 
 export default function Category() {
     const product = useSelector((state) => {return state.data})
@@ -32,7 +29,6 @@ export default function Category() {
     
   return (
     <>
-        <Nav />
         <section className='prodSection'>
             <div className='container'>
                 <div className='product'>
@@ -83,8 +79,6 @@ export default function Category() {
                 </div>
             </div>
         </section>
-        <Footer />
-        <RecentWatched />
     </>
   )
 }
