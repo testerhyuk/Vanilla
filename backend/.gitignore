@@ -36,7 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 
-/backend/src/main/resources/application.yml
-/backend/src/main/frontend/build/static/**static\
-application.yml
 static\
+application-oauth.yml
+application.yml
