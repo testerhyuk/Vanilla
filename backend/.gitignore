@@ -37,4 +37,6 @@ out/
 .vscode/
 
 /backend/src/main/resources/application.yml
-/backend/src/main/frontend/build/static/**
+/backend/src/main/frontend/build/static/**static\
+application.yml
+static\
