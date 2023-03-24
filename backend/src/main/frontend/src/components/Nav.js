@@ -28,9 +28,7 @@ export default function Nav() {
             <div className='nav_bar'>
             {/* 로고 */}
             <div className='logo'>
-            <Link to='/'>
-                <img src={process.env.PUBLIC_URL + '/logo.png'} alt='logo' className='logo' />
-            </Link>
+                <img src={process.env.PUBLIC_URL + '/logo.png'} alt='logo' className='logo' onClick={() => navigate('/')} />
             </div>
             </div>
             {/* 검색바 */}
@@ -51,15 +49,19 @@ export default function Nav() {
                 내 정보
             </button>
             <button type='button' className='cartInfo'>
-                <Link to={'/cart'} className='cart-btn'>
+                <div className='cart-btn'>
                     {cartList.length > 0 ?
                         <span className='count_cart'>{cartList.length}</span>
                         :
                         null
                     }
-                    <span><FontAwesomeIcon icon={faShoppingCart} className='cartIcon'/></span>
+                    <span><FontAwesomeIcon icon={faShoppingCart} className='cartIcon' onClick={() => {
+                            navigate('/cart') 
+                            window.location.reload()}}
+                        />
+                    </span>
                     장바구니
-                </Link>
+                </div>
             </button>
             </div>
         </div>
