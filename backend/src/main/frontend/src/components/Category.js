@@ -17,7 +17,7 @@ export default function Category() {
 
     useEffect(() => {
         const fetchData = async () => {
-            axios.get(`http://localhost:8080/api/category/${location.state.sex}/${location.state.cat}`)
+            axios.get(`http://localhost:8080/api/v1/category/${location.state.sex}/${location.state.cat}`)
             .then((res) => {
                 dispatch(showData(res.data))
             })

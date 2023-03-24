@@ -25,7 +25,7 @@ export default function SearchPage() {
     const fetchSearchProduct = async (searchTerm) => {
         try {
             const request = await axios.get(
-                `http://localhost:8080/api/product/search?keyword=${searchTerm}`
+                `http://localhost:8080/api/v1/product/search?keyword=${searchTerm}`
             );
             setSearchResults(request.data)
         } catch (error) {

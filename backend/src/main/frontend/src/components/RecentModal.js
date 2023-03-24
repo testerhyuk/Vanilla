@@ -7,6 +7,7 @@ import { setIsClick } from '../redux/Store';
 export default function RecentModal() {
   const arr = JSON.parse(sessionStorage.getItem('watched'))
   const isClick = useSelector((state) => {return state.click_recent})
+  const product = useSelector((state) => {return state.data})
   const dispatch = useDispatch()
   
   return (
@@ -38,6 +39,7 @@ export default function RecentModal() {
                       state={{
                           productId: parseInt(p[0]), 
                           title: p[1],
+                          price: p[2]
                   }}>
                     
                   <img 

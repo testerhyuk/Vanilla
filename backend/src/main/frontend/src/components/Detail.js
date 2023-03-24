@@ -10,6 +10,8 @@ import CartModal from './CartModal';
 export default function Detail() {
     const location = useLocation();
     const dispatch = useDispatch();
+
+    const originPrice = location.state.price;
     
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(location.state.price);
@@ -33,7 +35,7 @@ export default function Detail() {
     useEffect(() => {
         let watched = sessionStorage.getItem('watched')
         watched = JSON.parse(watched)
-        watched.unshift([location.state.productId, location.state.title])
+        watched.unshift([location.state.productId, location.state.title, originPrice])
         watched = [...new Set(watched.join("|").split("|"))]
                     .map((v) => v.split(","))
         watched = Array.from(watched)

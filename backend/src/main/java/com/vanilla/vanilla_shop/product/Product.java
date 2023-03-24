@@ -1,8 +1,10 @@
-package com.vanilla.vanilla_shop.entity;
+package com.vanilla.vanilla_shop.product;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,11 +15,19 @@ public class Product {
     @Id
     private Long id;
 
+    @Column(nullable = false)
     private String sex;
+
+    @Column(nullable = false)
     private String category;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private int price;
 
+    @Builder
     public Product(String sex, String category, String title, int price) {
         this.sex = sex;
         this.category = category;

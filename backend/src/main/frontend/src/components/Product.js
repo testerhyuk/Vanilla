@@ -11,7 +11,7 @@ export default function Product() {
 
     useEffect(() => {
         const fetchData = async () => {
-            axios.get('http://localhost:8080/api/product-best')
+            axios.get('http://localhost:8080/api/v1/product-best')
             .then((res) => {
                 dispatch(showData(res.data))
             })
