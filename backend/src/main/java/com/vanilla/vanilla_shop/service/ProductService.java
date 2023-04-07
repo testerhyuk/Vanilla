@@ -1,5 +1,7 @@
-package com.vanilla.vanilla_shop.product;
+package com.vanilla.vanilla_shop.service;
 
+import com.vanilla.vanilla_shop.entity.Product;
+import com.vanilla.vanilla_shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

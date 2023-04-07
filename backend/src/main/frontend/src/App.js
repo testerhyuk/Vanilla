@@ -12,6 +12,9 @@ import SearchPage from './components/SearchPage';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import RecentWatched from './components/RecentWatched';
+import ApiCall from './components/ApiCall';
+import Admin from './components/Admin';
+import MyPage from './components/MyPage';
 
 const Layout = () => {
   return (
@@ -29,11 +32,22 @@ const Layout = () => {
 function App() {
   useEffect(() => {
     const storage = sessionStorage.getItem('watched');
+    const sessionToken = sessionStorage.getItem('ACCESS_TOKEN');
+    const localToken = localStorage.getItem('ACCESS_TOKEN');
     
     if (!storage) {
         sessionStorage.setItem('watched', JSON.stringify([]))
     }
-  })
+
+    if (!sessionToken) {
+      sessionStorage.setItem('ACCESS_TOKEN', null)
+    }
+
+    if (!localToken) {
+      localStorage.setItem('ACCESS_TOKEN', null)
+    }
+
+  }, [])
 
   return (
     <div className="App">
@@ -48,6 +62,8 @@ function App() {
           <Route path='register' element={<Register />} />
           <Route path='register/email' element={<RegisterEmail />} />
           <Route path='login' element={<Login />} />
+          <Route path='admin' element={<Admin />} />
+          <Route path='my-page' element={<MyPage />} />
         </Routes>
     </div>
   );

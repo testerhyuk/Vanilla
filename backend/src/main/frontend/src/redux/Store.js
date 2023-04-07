@@ -13,6 +13,17 @@ const data = createSlice({
     }
 })
 
+const memberInfo = createSlice({
+    name : 'memberInfo',
+    initialState : [],
+    reducers : {
+        showMemberInfo(state, action) {
+            return action.payload
+        }
+    }
+})
+
+// 장바구니
 const cart = createSlice({
     name:'cart',
     initialState: [],
@@ -48,6 +59,7 @@ const cart = createSlice({
     },
 })
 
+// 최근 본 기능
 const click_recent = createSlice({
     name: 'click_recent',
     initialState: false,
@@ -63,13 +75,14 @@ const persistConfig = {
     key: 'root',
     storage: storage,
     whitelist: ['cart'],
-    blacklist: ['data', 'click_recent']
+    blacklist: ['data', 'click_recent', 'memberInfo']
 }
 
 const reducer = combineReducers({
     data : data.reducer,
     click_recent : click_recent.reducer,
     cart : cart.reducer,
+    memberInfo : memberInfo.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
@@ -85,5 +98,6 @@ export const { addCount } = cart.actions
 export const { minusCount } = cart.actions
 export const { deleteCart } = cart.actions
 export const { isCheck } = cart.actions
+export const { showMemberInfo } = memberInfo.actions
 
 export default store;

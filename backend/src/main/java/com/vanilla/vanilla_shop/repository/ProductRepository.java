@@ -1,5 +1,6 @@
-package com.vanilla.vanilla_shop.product;
+package com.vanilla.vanilla_shop.repository;
 
+import com.vanilla.vanilla_shop.entity.Product;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

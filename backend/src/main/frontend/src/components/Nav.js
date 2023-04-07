@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './css/Nav.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { call, signout } from './ApiCall';
 
 export default function Nav() {
     const [onOver, setOnOver] = useState(false);
@@ -17,11 +18,31 @@ export default function Nav() {
         navigate(`/search?keyword=${e.target.value}`)
     }
 
+    const handleMypage = () => {
+        if (localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null') {
+            alert("로그인이 필요한 서비스입니다.")
+        } else {
+            navigate('/my-page')
+        }
+    }
+
   return (
-    <>
+    <> 
         <div className='topFunc'>
-            <span onClick={() => {navigate('/register')}}>회원가입</span>
-            <span onClick={() => {navigate('/login')}}>로그인</span>
+            {localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null' ?
+                (
+                    <>
+                        <span onClick={() => {navigate('/register')}}>회원가입</span>
+                        <span onClick={() => {navigate('/login')}}>로그인</span>
+                    </>
+                )
+                :
+                (
+                    <>
+                        <span onClick={() => {signout()}}>로그아웃</span>
+                    </>
+                )
+            }
         </div>
         {/* 내비게이션 */}
         <div className='nav'>
@@ -45,7 +66,7 @@ export default function Nav() {
             {/* 회원 정보 장바구니 */}
             <div className='infoButton'>
             <button type='button' className='userInfo'>
-                <FontAwesomeIcon icon={faUser} className='userInfoIcon'/>
+                <FontAwesomeIcon icon={faUser} className='userInfoIcon' onClick={handleMypage} />
                 내 정보
             </button>
             <button type='button' className='cartInfo'>
@@ -55,10 +76,8 @@ export default function Nav() {
                         :
                         null
                     }
-                    <span><FontAwesomeIcon icon={faShoppingCart} className='cartIcon' onClick={() => {
-                            navigate('/cart') 
-                            window.location.reload()}}
-                        />
+                    <span>
+                        <FontAwesomeIcon icon={faShoppingCart} className='cartIcon' onClick={() => navigate('/cart')}/>
                     </span>
                     장바구니
                 </div>

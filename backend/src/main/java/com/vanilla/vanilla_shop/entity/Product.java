@@ -1,4 +1,4 @@
-package com.vanilla.vanilla_shop.product;
+package com.vanilla.vanilla_shop.entity;
 
 import lombok.Builder;
 import lombok.Getter;

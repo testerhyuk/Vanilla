@@ -72,9 +72,11 @@ export default function Cart() {
                                     <FontAwesomeIcon icon={faAngleDown} className='downIcon' onClick={() => {dispatch(minusCount(cartList[i].id))}} />
                                 </div>
                             </td>
-                            <td><FontAwesomeIcon icon={faTrashCan} className='trashcanIcon' onClick={() => {
-                                dispatch(deleteCart(cartList[i].id))
-                            }} /></td>
+                            <td>
+                                <FontAwesomeIcon icon={faTrashCan} className='trashcanIcon' onClick={() => {
+                                    dispatch(deleteCart(cartList[i].id))
+                                }} />
+                            </td>
                         </tr>
                     )
                 })}

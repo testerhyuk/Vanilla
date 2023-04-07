@@ -96,3 +96,36 @@
     border: none;
     background-color: rgb(241,195,51);
 }
+
+.find_addr {
+    background-color: rgb(241,195,51);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin: auto;
+    height: 40px;
+    width: 60px;
+    border-radius: 5px;
+}
+
+.addr_modal {
+    top: 60%;
+    left: 88%;
+    width: 500px;
+    height: 600px;
+    background-color: lightgray;
+    transform: translateX(-20%) translateY(-95%);
+    z-index: 1000;
+}
+
+.addr_close_btn {
+    border-radius: 5px;
+    width: 30px;
+    height: 20px;
+    background-color: lightgray;
+    border: none;
+    font-weight: bold;
+    float: left;
+    cursor: pointer;
+}

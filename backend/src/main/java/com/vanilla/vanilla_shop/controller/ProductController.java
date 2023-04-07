@@ -1,5 +1,7 @@
-package com.vanilla.vanilla_shop.product;
+package com.vanilla.vanilla_shop.controller;
 
+import com.vanilla.vanilla_shop.entity.Product;
+import com.vanilla.vanilla_shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

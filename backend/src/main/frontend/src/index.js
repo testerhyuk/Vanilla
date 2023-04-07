@@ -9,6 +9,7 @@ import Store from './redux/Store';
 import persistStore from 'redux-persist/es/persistStore';
 import store from './redux/Store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { SnackbarProvider } from 'notistack';
 
 const persistor = persistStore(store)
 
@@ -18,7 +19,9 @@ root.render(
   <Provider store={Store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <App />
+        <SnackbarProvider>
+          <App />
+        </SnackbarProvider>
       </BrowserRouter>
     </PersistGate>
   </Provider>

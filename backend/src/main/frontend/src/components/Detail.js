@@ -28,6 +28,19 @@ export default function Detail() {
         }
     }
 
+    const handleCartClick = () => {
+        dispatch(
+            insertItem({
+                id: location.state.productId,
+                title: location.state.title,
+                price: location.state.price,
+                quantity: quantity,
+                check: false,
+            })
+        )
+        setModal(true); 
+    }
+
     useEffect(() => {
         setPrice(location.state.price * quantity)
     }, [location.state.price, quantity])
@@ -101,18 +114,7 @@ export default function Detail() {
                         <button 
                             type='button' 
                             className='cart_button'
-                            onClick={() => {
-                                dispatch(
-                                    insertItem({
-                                        id: location.state.productId,
-                                        title: location.state.title,
-                                        price: location.state.price,
-                                        quantity: quantity,
-                                        check: false,
-                                    })
-                                )
-                                setModal(true);
-                            }}
+                            onClick={handleCartClick}
                         >
                             장바구니
                         </button>

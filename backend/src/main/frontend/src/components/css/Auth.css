@@ -23,6 +23,18 @@
     cursor: auto;
 }
 
+.auth_input_addr {
+    margin-top: 10px;
+    padding-left: 5px;
+    width: 80%;
+    border-radius: 5px;
+    border: solid 2px lightgray;
+    height: 40px;
+    background-color: white;
+    cursor: auto;
+    margin-right: 10px;
+}
+
 .to_login_register {
     margin-top: 10px;
 }

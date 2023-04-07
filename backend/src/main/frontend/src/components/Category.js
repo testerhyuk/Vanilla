@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { showData } from '../redux/Store'
 import './css/Product.css'
+import { SERVER_URL } from './Constant'
 
 export default function Category() {
     const product = useSelector((state) => {return state.data})
@@ -14,10 +15,10 @@ export default function Category() {
     const sex_dict = {"m":"남성", "w":"여성"};
     const cat_dict = {"shirts":"셔츠", "tshirts":"티셔츠", "jumper":"패딩/점퍼", "jacket":"자켓/코트", 
                     "pants":"바지/청바지", "skirts":"스커트", "onepiece":"원피스"}
-
+                    
     useEffect(() => {
         const fetchData = async () => {
-            axios.get(`http://localhost:8080/api/v1/category/${location.state.sex}/${location.state.cat}`)
+            axios.get(SERVER_URL + 'api/v1/category/' + location.state.sex + '/' + location.state.cat)
             .then((res) => {
                 dispatch(showData(res.data))
             })
