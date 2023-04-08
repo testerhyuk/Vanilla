@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-import './css/Detail.css'
+import '../css/Detail.css'
 import { useDispatch } from 'react-redux';
-import { insertItem } from '../redux/Store';
-import CartModal from './CartModal';
+import { insertItem } from '../../redux/Store';
+import CartModal from '../cart/CartModal';
 
 export default function Detail() {
     const location = useLocation();

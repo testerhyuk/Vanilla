@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import './css/Product.css'
+import '../css/Product.css'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { showData } from '../redux/Store';
-import ProductList from './ProductList';
-import { SERVER_URL } from './Constant'
+import { showData } from '../../redux/Store';
+import ProductList from '../product/ProductList';
+import { SERVER_URL } from '../Constant'
 
 export default function Product() {
     const product = useSelector((state) => {return state.data})

@@ -1,20 +1,18 @@
 import './App.css';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import Detail from './components/Detail';
-import Cart from './components/Cart';
+import Detail from './components/product/Detail';
+import Cart from './components/cart/Cart';
 import { useEffect } from 'react';
-import Register from './components/Register';
-import Main from './components/Main';
-import RegisterEmail from './components/RegisterEmail';
-import Login from './components/Login';
-import Category from './components/Category';
-import SearchPage from './components/SearchPage';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
-import RecentWatched from './components/RecentWatched';
-import ApiCall from './components/ApiCall';
-import Admin from './components/Admin';
-import MyPage from './components/MyPage';
+import Register from './components/auth/Register';
+import Main from './components/mainpage/Main';
+import RegisterEmail from './components/auth/RegisterEmail';
+import Login from './components/auth/Login';
+import Category from './components/product/Category';
+import SearchPage from './components/product/SearchPage';
+import Nav from './components/mainpage/Nav';
+import Footer from './components/mainpage/Footer';
+import RecentWatched from './components/recent/RecentWatched';
+import MyPage from './components/mypage/MyPage';
 
 const Layout = () => {
   return (
@@ -58,12 +56,11 @@ function App() {
             <Route path='cart' element={<Cart />} />
             <Route path='category/:sex/:cat' element={<Category />} />
             <Route path='search' element={<SearchPage />} />
+            <Route path='my-page' element={<MyPage />} />
           </Route>
           <Route path='register' element={<Register />} />
           <Route path='register/email' element={<RegisterEmail />} />
           <Route path='login' element={<Login />} />
-          <Route path='admin' element={<Admin />} />
-          <Route path='my-page' element={<MyPage />} />
         </Routes>
     </div>
   );

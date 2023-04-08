@@ -97,7 +97,7 @@
     background-color: rgb(241,195,51);
 }
 
-.find_addr {
+.reg_btn {
     background-color: rgb(241,195,51);
     color: white;
     font-weight: bold;
@@ -105,8 +105,9 @@
     border: none;
     margin: auto;
     height: 40px;
-    width: 60px;
+    width: 100px;
     border-radius: 5px;
+    font-size: 15px;
 }
 
 .addr_modal {

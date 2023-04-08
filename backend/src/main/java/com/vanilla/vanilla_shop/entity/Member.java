@@ -30,7 +30,13 @@ public class Member {
    private Authority authority;
 
    public void setPassword(String password) {
+
        this.password = password;
+   }
+
+   public void setAddress(String address, String detailAddress) {
+       this.address = address;
+       this.detailAddress = detailAddress;
    }
 
    @Builder

@@ -4,9 +4,9 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
-import { showData } from '../redux/Store'
-import './css/Product.css'
-import { SERVER_URL } from './Constant'
+import { showData } from '../../redux/Store'
+import '../css/Product.css'
+import { SERVER_URL } from '../Constant'
 
 export default function Category() {
     const product = useSelector((state) => {return state.data})

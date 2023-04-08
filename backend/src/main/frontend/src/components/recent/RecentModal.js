@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import './css/RecentModal.css'
-import { setIsClick } from '../redux/Store';
+import '../css/RecentModal.css'
+import { setIsClick } from '../../redux/Store';
 
 export default function RecentModal() {
   const arr = JSON.parse(sessionStorage.getItem('watched'))

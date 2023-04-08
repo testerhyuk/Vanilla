@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './css/Nav.css'
+import '../css/Nav.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { call, signout } from './ApiCall';
+import { signout } from '../api/ApiCall';
 
 export default function Nav() {
     const [onOver, setOnOver] = useState(false);
@@ -19,11 +19,12 @@ export default function Nav() {
     }
 
     const handleMypage = () => {
-        if (localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null') {
-            alert("로그인이 필요한 서비스입니다.")
-        } else {
-            navigate('/my-page')
-        }
+        navigate('/my-page')
+        // if (localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null') {
+        //     alert("로그인이 필요한 서비스입니다.")
+        // } else {
+        //     navigate('/my-page')
+        // }
     }
 
   return (

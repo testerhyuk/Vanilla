@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import './css/RecentWatched.css'
-import RecentModal from './RecentModal';
-import { setIsClick } from '../redux/Store';
+import '../css/RecentWatched.css'
+import RecentModal from '../recent/RecentModal';
+import { setIsClick } from '../../redux/Store';
 
 export default function RecentWatched() {
     const [count, setCount] = useState(0);

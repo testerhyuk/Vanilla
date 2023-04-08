@@ -1,4 +1,5 @@
-import { SERVER_URL } from "./Constant";
+import { enqueueSnackbar } from "notistack";
+import { SERVER_URL } from "../Constant";
 
 export function call(api, method, request) {
     let headers = new Headers({
@@ -30,7 +31,8 @@ export function call(api, method, request) {
     } else {
         response.text().then((res) => {
             const err = JSON.parse(res)
-            alert(err.error)
+            // alert(err.error)
+            enqueueSnackbar(err.error, {variant: 'error', autoHideDuration: 2000});
         })
     }
   }).catch((error) => {
@@ -69,5 +71,28 @@ export function signup(userDto) {
             alert('회원가입이 완료되었습니다')
             window.location.href="/login";
         }
+    })
+}
+
+export function modifyPassword(userDto) {
+    return call('member/password', 'PATCH', userDto).then((response) => {
+        if (response) {
+            enqueueSnackbar("비밀번호가 변경되었습니다", {variant: 'success', autoHideDuration: 2000});
+        }
+    })
+}
+
+export function modifyAddress(userDto) {
+    return call('member/address', 'PATCH', userDto).then((response) => {
+        if (response) {
+            alert("주소가 변경되었습니다")
+            window.location.reload();
+        }
+    })
+}
+
+export function getVerifyCode(userDto) {
+    return call('emailcode', 'POST', userDto).then(() => {
+        enqueueSnackbar("인증번호를 보냈습니다", {variant: 'success', autoHideDuration: 2000})
     })
 }

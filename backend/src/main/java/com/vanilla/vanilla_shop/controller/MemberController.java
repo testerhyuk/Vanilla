@@ -1,5 +1,6 @@
 package com.vanilla.vanilla_shop.controller;
 
+import com.vanilla.vanilla_shop.dto.ChangeAddressRequestDto;
 import com.vanilla.vanilla_shop.dto.ChangePasswordRequestDto;
 import com.vanilla.vanilla_shop.dto.MemberResponseDto;
 import com.vanilla.vanilla_shop.service.MemberService;
@@ -20,8 +21,13 @@ public class MemberController {
         return ResponseEntity.ok((myInfoBySecurity));
     }
 
-    @PostMapping("/password")
+    @PatchMapping("/password")
     public ResponseEntity<MemberResponseDto> setMemberPassword(@RequestBody ChangePasswordRequestDto request) {
         return ResponseEntity.ok(memberService.changeMemberPassword(request.getExPassword(), request.getNewPassword()));
+    }
+
+    @PatchMapping("/address")
+    public ResponseEntity<MemberResponseDto> setMemberAddress(@RequestBody ChangeAddressRequestDto request) {
+        return ResponseEntity.ok(memberService.changeMemberAddress(request.getAddress(), request.getDetailAddress()));
     }
 }

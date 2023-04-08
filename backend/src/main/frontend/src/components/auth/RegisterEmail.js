@@ -1,14 +1,18 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './css/Register.css'
-import './css/Auth.css'
+import '../css/Register.css'
+import '../css/Auth.css'
 import DaumPostcodeEmbed from 'react-daum-postcode';
 import { enqueueSnackbar } from 'notistack';
-import { signup } from './ApiCall';
+import { signup } from '../api/ApiCall';
+import { CheckEmail, CheckPassword } from '../CheckRegex';
+import { SERVER_URL } from '../Constant';
 
 export default function RegisterEmail() {
   const [modal, setModal] = useState(false);
   const [address, setAddress] = useState('');
+  const [verifyCheck, setVerifyCheck] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   const nameInput = useRef();
   const emailInput = useRef();
@@ -20,6 +24,7 @@ export default function RegisterEmail() {
   const [state, setState] = useState({
     name: '',
     email: '',
+    verify: '',
     password: '',
     passwordCheck: '',
     addrDetail: ''
@@ -94,26 +99,79 @@ export default function RegisterEmail() {
       return;
     }
 
-    // eslint-disable-next-line
-    var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-    if (!emailRegex.test(state.email)) {
+    if (CheckEmail(state.email) === false) {
       enqueueSnackbar("이메일 형식이 올바르지 않습니다", {variant: 'error', autoHideDuration: 2000});
       emailInput.current.focus();
       return;
     }
-
-    // eslint-disable-next-line
-    var pwdReg = /^.*(?=^.{8,}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-
-    if (!pwdReg.test(state.password)) {
+    
+    if (CheckPassword(state.password) === false) {
       enqueueSnackbar("비밀번호 형식이 올바르지 않습니다", {variant: 'error', autoHideDuration: 2000});
       passwordInput.current.focus();
       return;
     }
 
+    if (verified === false) {
+      enqueueSnackbar("이메일 인증이 필요합니다", {variant: 'error', autoHideDuration: 2000});
+      emailInput.current.focus();
+      return;
+    }
+
     signup({name: state.name, email: state.email, password: state.password, address: address, detailAddress: state.addrDetail});
 
+  }
+
+  const handleGetVerify = () => {
+    setVerifyCheck(true)
+    const headers = new Headers({
+      'Content-Type': `application/json`,
+    })
+
+    let options = {
+      headers: headers,
+      url: SERVER_URL + 'emailcode',
+      method: 'POST',
+    };
+
+    options.body = JSON.stringify({email: state.email})
+
+    fetch(options.url, options)
+        .then((res) => {
+            if (res.status === 200) {
+              enqueueSnackbar("인증이 완료되었습니다", {variant: 'success', autoHideDuration: 2000});
+              setVerified(true)
+            }
+        })
+        .catch ((error) => {
+            enqueueSnackbar("인증이 실패했습니다", {variant: 'error', autoHideDuration: 2000});
+            console.log(error);
+        })
+  }
+
+  const handleCheckVerify = () => {
+    const headers = new Headers({
+      'Content-Type': `application/json`,
+    })
+
+    let options = {
+      headers: headers,
+      url: SERVER_URL + 'verifycode',
+      method: 'POST',
+    };
+
+    options.body = JSON.stringify({epw: state.verify})
+
+    fetch(options.url, options)
+        .then((res) => {
+            if (res.status === 200) {
+              enqueueSnackbar("인증이 완료되었습니다", {variant: 'success', autoHideDuration: 2000});
+              setVerified(true)
+            }
+          })
+        .catch ((error) => {
+            enqueueSnackbar("인증이 실패했습니다", {variant: 'error', autoHideDuration: 2000});
+            console.log(error);
+        })
   }
 
   return (
@@ -144,12 +202,14 @@ export default function RegisterEmail() {
                 />
             </div>
             <div>
-                <label>
-                    <em className='asterisk'>*</em>
-                    이메일
-                </label>
+                <div>
+                  <label>
+                      <em className='asterisk'>*</em>
+                      이메일
+                  </label>
+                </div>
                 <input 
-                  className='auth_input' 
+                  className='auth_input_email input_btn' 
                   type="email" 
                   placeholder='이메일을 입력해주세요'
                   ref={emailInput} 
@@ -157,6 +217,20 @@ export default function RegisterEmail() {
                   onChange={handleChangeState}
                   name='email'
                 />
+                <button className='verify_btn reg_btn' onClick={handleGetVerify}>인증번호 받기</button>
+                {verifyCheck ?
+                  <>
+                    <input 
+                    className='auth_input_email_verify input_btn'  
+                    placeholder='인증번호를 입력하세요'
+                    value={state.verify} 
+                    onChange={handleChangeState}
+                    name='verify'
+                    />
+                    <button className='verify_btn reg_btn' onClick={handleCheckVerify}>인증 확인</button>
+                  </>
+                  : null
+                }
             </div>
             <div>
                 <label>
@@ -194,12 +268,12 @@ export default function RegisterEmail() {
                 </label>
               </div>
                 <input 
-                  className='auth_input_addr' 
+                  className='auth_input_addr input_btn' 
                   value={address}
                   ref={addrInput}  
                   onChange={handleChangeState}
                 />
-                <button className='find_addr' onClick={() => setModal(true)}>주소 찾기</button>
+                <button className='find_addr reg_btn' onClick={() => setModal(true)}>주소 찾기</button>
                 <input 
                   className='auth_input' 
                   placeholder='상세 주소'

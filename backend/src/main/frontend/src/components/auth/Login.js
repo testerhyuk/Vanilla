@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import './css/Login.css'
-import './css/Auth.css'
+import '../css/Login.css'
+import '../css/Auth.css'
 import { Link } from 'react-router-dom'
-import { signin } from './ApiCall';
+import { signin } from '../api/ApiCall';
 
 export default function Login() {
   const [isChecked, SetIsChecked] = useState(false);

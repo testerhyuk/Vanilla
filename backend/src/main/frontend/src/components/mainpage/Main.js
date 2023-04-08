@@ -1,6 +1,6 @@
 import React from 'react'
-import Banner from './Banner'
-import Product from './Product'
+import Banner from '../mainpage/Banner'
+import Product from '../product/Product'
 
 export default function Main() {
   return (

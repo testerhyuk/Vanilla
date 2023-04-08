@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './css/Register.css'
-import './css/Auth.css'
+import '../css/Register.css'
+import '../css/Auth.css'
 
 export default function Register() {
   return (

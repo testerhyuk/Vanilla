@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ProductList from './ProductList';
-import './css/SearchPage.css'
-import useDebounce from './hooks/useDebounce';
+import '../css/SearchPage.css'
+import useDebounce from '../hooks/useDebounce';
 
 export default function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
