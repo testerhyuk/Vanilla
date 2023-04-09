@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as solildHeart} from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart} from '@fortawesome/free-regular-svg-icons';
 import '../css/Detail.css'
 import { useDispatch } from 'react-redux';
 import { insertItem } from '../../redux/Store';
 import CartModal from '../cart/CartModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { enqueueSnackbar } from 'notistack';
+import { SERVER_URL } from '../Constant';
 
 export default function Detail() {
     const location = useLocation();
@@ -15,8 +19,8 @@ export default function Detail() {
     
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(location.state.price);
-    const [tab, setTab] = useState(0);
     const [modal, setModal] = useState(false);
+    const [like, setLike] = useState(false)
 
     const handleQuantityPlus = () => {
         setQuantity(quantity+1)
@@ -56,6 +60,96 @@ export default function Detail() {
         window.dispatchEvent(new Event("storage"));
     })
 
+    useEffect(() => {
+        function likeData() {
+            const accessToken = localStorage.getItem("ACCESS_TOKEN") !== 'null' ? localStorage.getItem("ACCESS_TOKEN") : sessionStorage.getItem("ACCESS_TOKEN")
+
+            if (accessToken === 'null') {
+                return;
+            }
+            
+            const headers = new Headers({
+                'Content-Type': `application/json`,
+            })
+    
+            if (accessToken && accessToken !== null) {
+                headers.append("Authorization", "Bearer " + accessToken);
+            }
+
+            let options = {
+                headers: headers,
+                url: SERVER_URL + 'api/wishes/check/' + location.state.productId,
+                method: 'GET',
+            };
+
+            fetch(options.url, options).then(response => {
+                response.text().then(res => {
+                    if (res === 'true') {
+                        setLike(true)
+                    }
+                })
+            })
+        }
+        likeData()
+    }, [location.state.productId, like])
+
+    const handleLike = () => {
+
+        const accessToken = localStorage.getItem("ACCESS_TOKEN") !== 'null' ? localStorage.getItem("ACCESS_TOKEN") : sessionStorage.getItem("ACCESS_TOKEN")
+
+        if (accessToken === 'null') {
+            enqueueSnackbar('로그인이 필요한 서비스입니다', {variant: 'error', autoHideDuration: 2000});
+            return;
+        }
+
+        const headers = new Headers({
+            'Content-Type': `application/json`,
+        })
+
+        if (accessToken && accessToken !== 'null') {
+            headers.append("Authorization", "Bearer " + accessToken);
+        } 
+
+        if (like === true) {
+            let options = {
+                headers: headers,
+                url: SERVER_URL + 'api/wishes/delete',
+                method: 'DELETE',
+            }
+            
+            options.body = JSON.stringify({product: location.state.productId})
+
+            fetch(options.url, options)
+                .then((res) => {
+                    if (res.status === 200) {
+                        enqueueSnackbar('찜목록에서 삭제되었습니다', {variant: 'success', autoHideDuration: 2000});
+                        setLike(false)
+                    }
+                })
+                .catch ((error) => {
+                    console.log(error);
+                })
+        } else {
+            let options = {
+                headers: headers,
+                url: SERVER_URL + 'api/wishes/create',
+                method: 'POST',
+            }
+            
+            options.body = JSON.stringify({product: location.state.productId})
+            
+            fetch(options.url, options)
+                .then((res) => {
+                    if (res.status === 200) {
+                        enqueueSnackbar('찜목록에 추가되었습니다', {variant: 'success', autoHideDuration: 2000});
+                        setLike(true)
+                    }
+                })
+                .catch ((error) => {
+                    console.log(error);
+                })
+        }
+    }
 
   return (
     <>
@@ -69,6 +163,11 @@ export default function Detail() {
                 />
             </div>
             <div className='buyInfo'>
+                {like ?
+                    <FontAwesomeIcon icon={solildHeart} style={{color:'#ee1742', cursor: 'pointer', height: 25}} onClick={handleLike} />
+                    :
+                    <FontAwesomeIcon icon={regularHeart} style={{color:'#ee1742', cursor: 'pointer', height: 25}} onClick={handleLike} />
+                }
                 <div>
                     <h3 className='productTitle'>{location.state.title}</h3>
                 </div>
@@ -122,33 +221,17 @@ export default function Detail() {
                     </div>
                 </div>
             </div>
-            {/* 탭 UI */}
+            {/* 리뷰 UI */}
         </section>
         <div className='tabUI'>
             <ul className='menuTab'>
                 <li>
-                    <span 
-                        className={'tabBox' + (tab===0 ? ' active' : '')}
-                        onClick={() => setTab(0)}
-                    >
-                        리뷰
-                    </span>
-                </li>
-                <li>
-                    <span 
-                        className={'tabBox' + (tab===1 ? ' active' : '')}
-                        onClick={() => setTab(1)}
-                    >
-                        Q&A
-                    </span>
+                    <span className='tabBox'>리뷰</span>
                 </li>
             </ul>
         </div>
         <div className='tabDetail'>
-            { 
-                tab === 0 ? <div>리뷰를 보여줌</div>
-                : <div>Q&A를 보여줌</div>
-            }
+            <div>리뷰를 보여줌</div>
         </div>
     </>
   )

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -15,14 +17,14 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<Product> findProductTopTen() {
-        return productRepository.findTopTen();
+        return productRepository.findTop10ByIdOrderByDesc();
     }
 
     public List<Product> findByKeyword(String keyword) {
-        return productRepository.findProdByKeyword(keyword);
+        return productRepository.findByTitleContaining(keyword);
     }
 
-    public List<Product> findProductByCategory(String sex, String cat) {
-        return productRepository.findProductByCat(sex, cat);
+    public List<Product> findByCatAndSex(String cat, String sex) {
+        return productRepository.findByCategoryAndSex(cat, sex);
     }
 }

@@ -31,7 +31,6 @@ export function call(api, method, request) {
     } else {
         response.text().then((res) => {
             const err = JSON.parse(res)
-            // alert(err.error)
             enqueueSnackbar(err.error, {variant: 'error', autoHideDuration: 2000});
         })
     }

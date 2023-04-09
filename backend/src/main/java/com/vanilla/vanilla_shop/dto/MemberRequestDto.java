@@ -1,6 +1,6 @@
 package com.vanilla.vanilla_shop.dto;
 
-import com.vanilla.vanilla_shop.role.Authority;
+import com.vanilla.vanilla_shop.state.Authority;
 import com.vanilla.vanilla_shop.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

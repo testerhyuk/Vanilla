@@ -5,7 +5,7 @@ export default function MyOrderList() {
   return (
     <div className='content_area'>
         <div className='order_list'>
-            <span>주문목록</span>
+            <h1>주문목록</h1>
         </div>
         <div>
             <div className='ordered_list'>

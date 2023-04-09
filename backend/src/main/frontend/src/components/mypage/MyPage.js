@@ -5,14 +5,15 @@ import { SERVER_URL } from '../Constant';
 import '../css/Mypage.css'
 import OrderList from './MyOrderList';
 import MyReviewList from './MyReviewList';
-import MyWantedList from './MyWantedList';
 import MyInfoList from './MyInfoList';
+import PageLoading from '../PageLoading';
 
 export default function MyPage() {
   const [clickedOrderList, setClickedOrderList] = useState(true);
   const [clickedReview, setClickedReview] = useState(false);
   const [clickedWanted, setClickedWanted] = useState(false);
   const [clickedInfo, setClickedInfo] = useState(false);
+
   const memberInfo = useSelector((state) => {return state.memberInfo})
   const dispatch = useDispatch();
 
@@ -42,10 +43,15 @@ export default function MyPage() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem("ACCESS_TOKEN") !== 'null' ? localStorage.getItem("ACCESS_TOKEN") : sessionStorage.getItem("ACCESS_TOKEN")
+
+    if (accessToken === 'null') {
+      return;
+    }
+
     const headers = new Headers({
       'Content-Type': `application/json`,
     })
-    if (accessToken && accessToken !== null) {
+    if (accessToken && accessToken !== 'null') {
       headers.append("Authorization", "Bearer " + accessToken);
     }
 
@@ -126,7 +132,7 @@ export default function MyPage() {
         <div>
         {clickedOrderList ? <OrderList /> 
           : clickedReview ? <MyReviewList /> 
-          : clickedWanted ? <MyWantedList />
+          : clickedWanted ? <PageLoading />
           : <MyInfoList 
               email={memberInfo.email} 
               name={memberInfo.name} 

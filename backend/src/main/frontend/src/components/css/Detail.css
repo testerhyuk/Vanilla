@@ -31,13 +31,13 @@
 
 .productTitle {
     margin-top: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .ProductPrice {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .detailInfo {
@@ -186,7 +186,8 @@
 
 .tabBox {
     cursor: pointer;
-    background-color: #f3f5f7;
+    background-color: #3d3d4f;
+    color: white;
     display: block;
     position: relative;
     height: 42px;
@@ -194,11 +195,6 @@
     font-weight: 600;
     line-height: 43px;
     text-align: center;
-}
-
-.active {
-    background-color: #3d3d4f;
-    color: white;
 }
 
 .tabDetail {

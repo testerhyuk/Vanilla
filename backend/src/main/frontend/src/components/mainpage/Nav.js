@@ -68,7 +68,7 @@ export default function Nav() {
             <div className='infoButton'>
             <button type='button' className='userInfo'>
                 <FontAwesomeIcon icon={faUser} className='userInfoIcon' onClick={handleMypage} />
-                내 정보
+                <span onClick={handleMypage}>내 정보</span>
             </button>
             <button type='button' className='cartInfo'>
                 <div className='cart-btn'>
@@ -80,7 +80,7 @@ export default function Nav() {
                     <span>
                         <FontAwesomeIcon icon={faShoppingCart} className='cartIcon' onClick={() => navigate('/cart')}/>
                     </span>
-                    장바구니
+                    <span onClick={() => navigate('/cart')}>장바구니</span>
                 </div>
             </button>
             </div>

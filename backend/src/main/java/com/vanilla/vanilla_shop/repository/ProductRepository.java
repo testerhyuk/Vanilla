@@ -1,35 +1,22 @@
 package com.vanilla.vanilla_shop.repository;
 
 import com.vanilla.vanilla_shop.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class ProductRepository{
-    @PersistenceContext
-    private EntityManager em;
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    Product findProductById(Long id);
 
-    public List<Product> findTopTen() {
-        return em.createQuery("select p from Product p", Product.class)
-                .setMaxResults(10)
-                .getResultList();
-    }
+    @Query(value = "select * from Product limit 10", nativeQuery = true)
+    List<Product> findTop10ByIdOrderByDesc();
 
-    public List<Product> findProdByKeyword(String keyword) {
-        return em.createQuery(
-                "select p from Product p where title like :keyword"
-                , Product.class
-                ).setParameter("keyword", "%"+keyword+"%")
-                .getResultList();
-    }
+    List<Product> findByTitleContaining(String keyword);
 
-    public List<Product> findProductByCat(String sex, String cat) {
-        return em.createQuery(
-                "select p from Product p where p.sex='" + sex + "' and p.category='" + cat + "'",
-                Product.class
-        ).getResultList();
-    }
+    List<Product> findByCategoryAndSex(String cat, String sex);
+
+
 }

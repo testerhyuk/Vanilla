@@ -1,6 +1,8 @@
 package com.vanilla.vanilla_shop.service;
 
 import com.vanilla.vanilla_shop.config.SecurityUtil;
+import com.vanilla.vanilla_shop.dto.DeleteMemberRequestDto;
+import com.vanilla.vanilla_shop.dto.MemberRequestDto;
 import com.vanilla.vanilla_shop.dto.MemberResponseDto;
 import com.vanilla.vanilla_shop.entity.Member;
 import com.vanilla.vanilla_shop.repository.MemberRepository;
@@ -44,5 +46,13 @@ public class MemberService {
         member.setAddress(newAddress, newDetailAddress);
 
         return MemberResponseDto.of(memberRepository.save(member));
+    }
+
+    @Transactional
+    public void deleteMemeber(DeleteMemberRequestDto requestDto) {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId())
+                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+
+        memberRepository.deleteById(member.getId());
     }
 }

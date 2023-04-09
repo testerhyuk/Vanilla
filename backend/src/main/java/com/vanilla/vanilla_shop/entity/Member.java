@@ -1,18 +1,18 @@
 package com.vanilla.vanilla_shop.entity;
 
-import com.vanilla.vanilla_shop.role.Authority;
+import com.vanilla.vanilla_shop.state.Authority;
 import lombok.*;
 import javax.persistence.*;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
     @Column(nullable = false)
@@ -28,6 +28,15 @@ public class Member {
 
    @Enumerated(EnumType.STRING)
    private Authority authority;
+
+   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+   List<Wish> wishes = new ArrayList<>();
+
+   @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+   List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
+    List<Deal> deals = new ArrayList<>();
 
    public void setPassword(String password) {
 

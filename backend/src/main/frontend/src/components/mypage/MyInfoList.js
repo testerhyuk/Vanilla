@@ -4,6 +4,7 @@ import { modifyAddress, modifyPassword } from '../api/ApiCall'
 import DaumPostcodeEmbed from 'react-daum-postcode';
 import { enqueueSnackbar } from 'notistack';
 import { CheckPassword } from '../CheckRegex';
+import { SERVER_URL } from '../Constant';
 
 export default function MyInfoList(props) {
     const [address, setAddress] = useState('');
@@ -72,7 +73,47 @@ export default function MyInfoList(props) {
     }
 
     const WithdrawlMemeber = () => {
+        if (window.confirm("정말 탈퇴하시겠습니까?")) {
+            const headers = new Headers({
+                'Content-Type': `application/json`,
+            })
+            
+            const accessToken = localStorage.getItem("ACCESS_TOKEN") !== 'null' ? localStorage.getItem("ACCESS_TOKEN") : sessionStorage.getItem("ACCESS_TOKEN")
+            
+            if (accessToken && accessToken !== null) {
+                headers.append("Authorization", "Bearer " + accessToken);
+            }
         
+            let options = {
+                headers: headers,
+                url: SERVER_URL + 'member/delete',
+                method: 'DELETE',
+            };
+        
+            options.body = JSON.stringify({email: props.email})
+        
+            fetch(options.url, options)
+                .then((res) => {
+                    if (res.status === 200) {
+
+                        if (sessionStorage.getItem("ACCESS_TOKEN")) {
+                            sessionStorage.setItem("ACCESS_TOKEN", null)
+                        }
+                    
+                        if (localStorage.getItem("ACCESS_TOKEN")) {
+                            localStorage.setItem("ACCESS_TOKEN", null)
+                        }
+                    }
+                    alert('회원 탈퇴가 완료되었습니다')
+                    window.location.href='/';
+                })
+                .catch ((error) => {
+                    enqueueSnackbar("회원 탈퇴가 실패했습니다", {variant: 'error', autoHideDuration: 2000});
+                    console.log(error);
+                })
+        } else {
+            return;
+        }
     }
 
   return (
