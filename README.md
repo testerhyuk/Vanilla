@@ -6,7 +6,7 @@
 
 ---
 
-#### - 기술스택
+#### - 기술스택 <br/><br/>
 
 <div align=left>
   <table>
@@ -37,69 +37,70 @@
     <tr>
     </table>  
   </div>
+<br/><br/><br/>
 
-## 🔎 기술 소개
+## 🔎 기술 소개 <br/><br/><br/>
 
-#### 메인페이지
+#### 메인페이지 <br/><br/>
 
-<img src="https://github.com/testerhyuk/notes/blob/main/%EB%A9%94%EC%9D%B8%ED%8E%98%EC%9D%B4%EC%A7%80.PNG?raw=true" height:>
+<img src="https://github.com/testerhyuk/notes/blob/main/%EB%A9%94%EC%9D%B8%ED%8E%98%EC%9D%B4%EC%A7%80.PNG?raw=true" height:> <br/><br/>
 
-#### 회원가입 & 로그인
+#### 회원가입 & 로그인 <br/><br/>
 
 <img src="https://github.com/testerhyuk/notes/blob/main/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.gif?raw=true">
-<img src="https://github.com/testerhyuk/notes/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true"> <br/><br/>
 
-> 사용자는 유효성 검증을 통해 회원가입 진행
-> 회원 가입 시 이메일 인증 후 가입 가능
-> 비밀번호 입력시 영문+숫자+특수문자 8자리 이상 기입해야 가입 가능
-> DaumPost를 통해 주소를 찾고 기입 가능
-> 로그인 시 자동 로그인 체크박스를 통해 자동 로그인 가능
+> 사용자는 유효성 검증을 통해 회원가입 진행 <br/><br/>
+> 회원 가입 시 이메일 인증 후 가입 가능 <br/><br/>
+> 비밀번호 입력시 영문+숫자+특수문자 8자리 이상 기입해야 가입 가능 <br/><br/>
+> DaumPost를 통해 주소를 찾고 기입 가능 <br/><br/>
+> 로그인 시 자동 로그인 체크박스를 통해 자동 로그인 가능 <br/><br/><br/>
 
-#### 회원탈퇴
+#### 회원탈퇴 <br/><br/>
 
-<img src="https://github.com/testerhyuk/notes/blob/main/%ED%9A%8C%EC%9B%90%ED%83%88%ED%87%B4.gif?raw=true">
+<img src="https://github.com/testerhyuk/notes/blob/main/%ED%9A%8C%EC%9B%90%ED%83%88%ED%87%B4.gif?raw=true"> <br/><br/>
 
-#### 마이페이지 & 회원정보 수정
+#### 마이페이지 & 회원정보 수정 <br/><br/>
 
 <img src="https://github.com/testerhyuk/notes/blob/main/%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%EB%B3%80%EA%B2%BD.gif?raw=true">
-<img src="https://github.com/testerhyuk/notes/blob/main/%EC%A3%BC%EC%86%8C%EB%B3%80%EA%B2%BD.gif?raw=true">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%A3%BC%EC%86%8C%EB%B3%80%EA%B2%BD.gif?raw=true"> <br/><br/>
 
-> 기존 비밀번호를 통해 해당 사용자 검증 후 새 비밀번호로 변경 가능
-> DaumPost를 통해 주소를 찾고 주소 변경 가능
+> 기존 비밀번호를 통해 해당 사용자 검증 후 새 비밀번호로 변경 가능 <br/><br/>
+> DaumPost를 통해 주소를 찾고 주소 변경 가능 <br/><br/><br/>
 
-#### 검색
+#### 검색 <br/><br/>
 
-<img src="https://github.com/testerhyuk/notes/blob/main/%EA%B2%80%EC%83%89.gif?raw=true">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EA%B2%80%EC%83%89.gif?raw=true"> <br/><br/>
 
-> 상품의 이름을 기준으로 검색 가능
+> 상품의 이름을 기준으로 검색 가능 <br/><br/><br/>
 
-#### 카테고리 조회
+#### 카테고리 조회 <br/><br/>
 
-<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%A1%B0%ED%9A%8C.gif?raw=true">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%A1%B0%ED%9A%8C.gif?raw=true"> <br/><br/>
 
-> 남성별, 여성별 의류별(청바지, 티쳐스 등) 조회 가능
+> 남성별, 여성별 의류별(청바지, 티쳐스 등) 조회 가능 <br/><br/><br/>
 
-#### 장바구니
+#### 장바구니 <br/><br/>
 
-<img src="">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88.gif?raw=true"> <br/><br/>
 
-> 원하는 수량만큼 상품 담기 가능
-> 장바구니 페이지에서 수량 조절 및 삭제 가능
-> redux-persist를 이용해 브라우저를 닫고 다시 켜도 데이터 유지
+> 원하는 수량만큼 상품 담기 가능 <br/><br/>
+> 장바구니 페이지에서 수량 조절 및 삭제 가능 <br/><br/>
+> redux-persist를 이용해 브라우저를 닫고 다시 켜도 데이터 유지 <br/><br/><br/>
 
-#### 찜하기
+#### 찜하기 <br/><br/>
 
-<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B0%9C%ED%95%98%EA%B8%B0.gif?raw=true">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B0%9C%ED%95%98%EA%B8%B0.gif?raw=true"> <br/><br/>
 
-#### 최근 본 기능
+#### 최근 본 기능 <br/><br/>
 
-<img src="">
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B5%9C%EA%B7%BC%EB%B3%B8%EA%B8%B0%EB%8A%A5.gif?raw=true"> <br/><br/>
 
-> 최근 본 상품을 모달 형식으로 제공
-> 최근 본 상품 모달에서 바로 상품 상세페이지 접근 
+> 최근 본 상품을 모달 형식으로 제공 <br/><br/>
+> 최근 본 상품 모달에서 바로 상품 상세페이지 접근  <br/><br/><br/>
 
-#### 구현중
-> 결제 및 결제 
-> 찜목록
-> 리뷰
+#### 구현중 <br/><br/>
+> 결제 및 결제 <br/><br/>
+> 찜목록 <br/><br/>
+> 리뷰 <br/><br/>
 > 아이디 & 비밀번호 
