@@ -95,6 +95,9 @@
 #### 찜하기 <br/><br/>
 
 <img src="https://github.com/testerhyuk/notes/blob/main/%EC%B0%9C%ED%95%98%EA%B8%B0.gif?raw=true"> <br/><br/>
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B0%9C%EB%AA%A9%EB%A1%9D.gif?raw=true"> <br/><br/>
+
+> 마이페이지에서 찜목록 확인 가능 <br/><br/><br/>
 
 #### 최근 본 기능 <br/><br/>
 
