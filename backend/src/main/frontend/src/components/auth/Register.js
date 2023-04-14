@@ -13,12 +13,7 @@ export default function Register() {
               <li className='register_step'>1</li>
               <li>2</li>
             </ul>
-            <h3 className='choose_register'>회원가입 방법 선택</h3>
-          </div>
-          <div>
-            <button className='register_google'>
-              <span className='register_google_span'>구글로 가입하기</span>
-            </button>
+            <h3 className='choose_register'>회원가입</h3>
           </div>
           <div>
             <Link to={'/register/email'}>

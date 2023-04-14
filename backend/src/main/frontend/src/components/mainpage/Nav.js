@@ -20,11 +20,12 @@ export default function Nav() {
 
     const handleMypage = () => {
         navigate('/my-page')
-        // if (localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null') {
-        //     alert("로그인이 필요한 서비스입니다.")
-        // } else {
-        //     navigate('/my-page')
-        // }
+        if (localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null') {
+            alert("로그인이 필요한 서비스입니다.")
+            return;
+        } else {
+            navigate('/my-page')
+        }
     }
 
   return (

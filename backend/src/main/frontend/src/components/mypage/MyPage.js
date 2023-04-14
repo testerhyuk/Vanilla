@@ -6,7 +6,7 @@ import '../css/Mypage.css'
 import OrderList from './MyOrderList';
 import MyReviewList from './MyReviewList';
 import MyInfoList from './MyInfoList';
-import PageLoading from '../PageLoading';
+import MyWishList from './MyWishList';
 
 export default function MyPage() {
   const [clickedOrderList, setClickedOrderList] = useState(true);
@@ -132,7 +132,7 @@ export default function MyPage() {
         <div>
         {clickedOrderList ? <OrderList /> 
           : clickedReview ? <MyReviewList /> 
-          : clickedWanted ? <PageLoading />
+          : clickedWanted ? <MyWishList />
           : <MyInfoList 
               email={memberInfo.email} 
               name={memberInfo.name} 

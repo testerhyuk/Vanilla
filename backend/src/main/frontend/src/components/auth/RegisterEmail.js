@@ -292,9 +292,6 @@ export default function RegisterEmail() {
           <div className='to_login_register'>
             <Link style={{color: "gray", fontSize: 13}} to={"/login"}>로그인으로</Link>
           </div>
-          <div>
-            <Link style={{color: "gray", fontSize: 13}} to={"/"}>홈으로</Link>
-          </div>
         </section>
         {modal ? 
             <div className='addr_modal'>

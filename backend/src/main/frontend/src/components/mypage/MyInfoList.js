@@ -189,7 +189,9 @@ export default function MyInfoList(props) {
                 </tr>
             </tbody>
         </table>
-        <button className='withdrawlMember_btn submit_btn' onClick={WithdrawlMemeber}>회원탈퇴</button>
+        <div className='withdrawlMember'>
+            <button className='withdrawlMember_btn submit_btn' onClick={WithdrawlMemeber}>회원탈퇴</button>
+        </div>
         {isClicked ?
             <div className='addrInput_modal'>
                 <button className='addr_close_btn' onClick={() => setIsClicked(false)}>X</button>

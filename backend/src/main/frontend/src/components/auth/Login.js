@@ -35,16 +35,8 @@ export default function Login() {
               </button>
             </div>
           </form>
-          <div>
-            <button className='login_google'>
-              <span className='login_google_span'>구글로 로그인하기</span>
-            </button>
-          </div>
           <div className='to_login_register'>
             <Link style={{color: "gray", fontSize: 13}} to={"/register"}>회원가입으로</Link>
-          </div>
-          <div>
-            <Link style={{color: "gray", fontSize: 13}} to={"/"}>홈으로</Link>
           </div>
         </section>
     </div>
