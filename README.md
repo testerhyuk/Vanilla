@@ -39,6 +39,10 @@
   </div>
 <br/><br/><br/>
 
+#### - 데이터 <br/><br/><br/>
+
+> 지마켓 의류 베스트셀러 상품 데이터 크롤링 <br/><br/><br/>
+
 ## 🔎 기술 소개 <br/><br/><br/>
 
 #### 메인페이지 <br/><br/>
@@ -91,6 +95,9 @@
 #### 찜하기 <br/><br/>
 
 <img src="https://github.com/testerhyuk/notes/blob/main/%EC%B0%9C%ED%95%98%EA%B8%B0.gif?raw=true"> <br/><br/>
+<img src="https://github.com/testerhyuk/notes/blob/main/%EC%B0%9C%EB%AA%A9%EB%A1%9D.gif?raw=true"> <br/><br/>
+
+> 마이페이지에서 찜목록 확인 가능 <br/><br/><br/>
 
 #### 최근 본 기능 <br/><br/>
 
@@ -100,7 +107,6 @@
 > 최근 본 상품 모달에서 바로 상품 상세페이지 접근  <br/><br/><br/>
 
 #### 구현중 <br/><br/>
-> 결제 및 결제 <br/><br/>
-> 찜목록 <br/><br/>
+> 결제 <br/><br/>
 > 리뷰 <br/><br/>
-> 아이디 & 비밀번호 
+> 아이디 & 비밀번호 찾기
