@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../css/Nav.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { signout } from '../api/ApiCall';
+import { SERVER_URL } from '../Constant';
 
 export default function Nav() {
     const [onOver, setOnOver] = useState(false);
     const navigate = useNavigate();
-    const cartList = useSelector((state) => state.cart);
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [cartProduct, setCartProduct] = useState([]);
 
     const handleChange = (e) => {
         setSearchKeyword(e.target.value)
@@ -19,7 +19,6 @@ export default function Nav() {
     }
 
     const handleMypage = () => {
-        navigate('/my-page')
         if (localStorage.getItem("ACCESS_TOKEN") === 'null' && sessionStorage.getItem("ACCESS_TOKEN") === 'null') {
             alert("로그인이 필요한 서비스입니다.")
             return;
@@ -27,6 +26,34 @@ export default function Nav() {
             navigate('/my-page')
         }
     }
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem("ACCESS_TOKEN") !== 'null' ? localStorage.getItem("ACCESS_TOKEN") : sessionStorage.getItem("ACCESS_TOKEN")
+
+        if(accessToken === 'null') {
+        return;
+        }
+        
+        const headers = new Headers({
+            'Content-Type': `application/json`,
+        })
+
+        if (accessToken && accessToken !== 'null') {
+            headers.append("Authorization", "Bearer " + accessToken);
+        }
+
+        let options = {
+            headers: headers,
+            url: SERVER_URL + 'api/cart/read',
+            method: 'GET',
+        };
+
+        fetch(options.url, options).then(response => {
+            response.json().then(res => {
+                setCartProduct(res)
+            })
+        })
+    }, [])
 
   return (
     <> 
@@ -73,8 +100,8 @@ export default function Nav() {
             </button>
             <button type='button' className='cartInfo'>
                 <div className='cart-btn'>
-                    {cartList.length > 0 ?
-                        <span className='count_cart'>{cartList.length}</span>
+                    {cartProduct.length > 0 ?
+                        <span className='count_cart'>{cartProduct.length}</span>
                         :
                         null
                     }

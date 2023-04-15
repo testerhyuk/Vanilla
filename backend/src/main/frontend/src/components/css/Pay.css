@@ -1,0 +1,174 @@
+.pay_body {
+    width: 1020px;
+    margin: 0 auto 20px;
+    padding-top: 10px;
+}
+
+.pay_middle {
+    clear: both;
+    padding: 0 0 40px;
+    background: #fff;
+}
+
+.orderTitle {
+    height: 70px;
+    overflow: hidden;
+    border-bottom: 3px solid #777;
+}
+
+.pay_title {
+    float: left;
+    margin-top: 5px;
+    padding-left: 0;
+    line-height: 70px;
+    font-size: 30px;
+    color: #111;
+}
+
+.pay_info {
+    margin-top: 30px
+}
+
+.pay_h2 {
+    margin-top: 40px;
+    padding-left: 2px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.pay_table {
+    width: 100%;
+    border-top: 2px solid #cecece;
+}
+
+.pay_tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.pay_tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.pay_col-1 {
+    width: 104px;
+    border: solid #e4e4e4;
+    border-width: 0 1px 1px 0;
+    padding: 7px 10px 7px 15px;
+    font-weight: 500;
+    text-align: right;
+    background: #f4f4f4;
+    font-size: 15px;
+}
+
+.pay_col-2 {
+    border-bottom: 1px solid #e4e4e4;
+    padding: 10px 16px;
+    font-size: 15px;
+}
+
+.bundle_info {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.bundle_expected-delivery-date {
+    padding: 10px 15px 10px 20px!important;
+    line-height: 26px!important;
+    display: inline-block;
+    background-color: #eee;
+    width: 100%;
+}
+
+.bundle_expected-delivery-info {
+    float: left;
+    line-height: 26px;
+    font-size: 15px;
+    display: block;
+    clear: both;
+}
+
+.bundle_expected-delivery-info strong {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.bundle_item-list {
+    overflow: hidden;
+    zoom: 1;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    padding: 0 15px 0 20px;
+}
+
+.vendor_item {
+    width: 60%!important;
+    padding-right: 40px!important;
+    font-size: 12px!important;
+    color: #555;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.vendor_item p {
+    font-size: 16px;
+    color: #111;
+}
+
+.payType {
+    padding: 0 15px;
+}
+
+.payBox {
+    width: 845px;
+}
+
+.type_selector {
+    width: 845px;
+    position: relative;
+    padding-top: 4px;
+}
+
+.type_selector li {
+    display: block;
+    float: left;
+    margin-right: 9px;
+    padding: 0 0 0 2px;
+    font-size: 12px;
+    line-height: 39px;
+    letter-spacing: -1px;
+}
+
+.type_selector-radio {
+    margin-right: 1px;
+    vertical-align: -1px;
+}
+
+.type_selector-label {
+    position: relative;
+}
+
+.payButton_wrap {
+    text-align: center;
+}
+
+.payButton {
+    background: rgb(241, 195, 51);
+    border: 0;
+    box-shadow: none;
+    border-radius: 3px;
+    width: 200px;
+    height: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}

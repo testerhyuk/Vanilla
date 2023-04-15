@@ -4,16 +4,14 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as solildHeart} from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart} from '@fortawesome/free-regular-svg-icons';
 import '../css/Detail.css'
-import { useDispatch } from 'react-redux';
-import { insertItem } from '../../redux/Store';
 import CartModal from '../cart/CartModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { enqueueSnackbar } from 'notistack';
 import { SERVER_URL } from '../Constant';
+import { Link } from 'react-router-dom';
 
 export default function Detail() {
     const location = useLocation();
-    const dispatch = useDispatch();
 
     const originPrice = location.state.price;
     
@@ -33,16 +31,38 @@ export default function Detail() {
     }
 
     const handleCartClick = () => {
-        dispatch(
-            insertItem({
-                id: location.state.productId,
-                title: location.state.title,
-                price: location.state.price,
-                quantity: quantity,
-                check: false,
+        const accessToken = localStorage.getItem("ACCESS_TOKEN") !== 'null' ? localStorage.getItem("ACCESS_TOKEN") : sessionStorage.getItem("ACCESS_TOKEN")
+
+        if (accessToken === 'null') {
+            enqueueSnackbar('로그인이 필요한 서비스입니다', {variant: 'error', autoHideDuration: 2000});
+            return;
+        }
+
+        const headers = new Headers({
+            'Content-Type': `application/json`,
+        })
+
+        if (accessToken && accessToken !== 'null') {
+            headers.append("Authorization", "Bearer " + accessToken);
+        } 
+
+        let options = {
+            headers: headers,
+            url: SERVER_URL + 'api/cart/create',
+            method: 'POST',
+        }
+        
+        options.body = JSON.stringify({product: location.state.productId, quantity: quantity})
+        
+        fetch(options.url, options)
+            .then((res) => {
+                if (res.status === 200) {
+                    setModal(true); 
+                }
             })
-        )
-        setModal(true); 
+            .catch ((error) => {
+                console.log(error);
+            })
     }
 
     useEffect(() => {
@@ -217,7 +237,16 @@ export default function Detail() {
                         >
                             장바구니
                         </button>
-                        <button type='button' className='buy_button'>구매하기</button>
+                        <Link
+                            to={'/pay'}
+                            style={{ textDecoration: "none" }}
+                            state={{ 
+                                productInfo: [{"title": location.state.title, "quantity": quantity}],
+                                price: price,
+                            }} 
+                        >
+                            <button type='button' className='buy_button'>구매하기</button>
+                        </Link>
                     </div>
                 </div>
             </div>

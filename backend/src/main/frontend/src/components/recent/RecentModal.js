@@ -31,27 +31,26 @@ export default function RecentModal() {
           {arr.map((p, i) => {
             return (
               <div className='dialog_detail' key={i}>
-                <div>
-                  <Link 
-                      to={`/detail/${p[0]}`}
-                      style={{ textDecoration: "none" }}
-                      onClick={() => dispatch(setIsClick(isClick))}
-                      state={{
-                          productId: parseInt(p[0]), 
-                          title: p[1],
-                          price: p[2]
-                  }}>
-                    
-                  <img 
-                    src={"https://gdimg.gmarket.co.kr/" + parseInt(p[0]) + "/still/300"}
-                    className='dialog_img'
-                    alt={"최근본상품"}
-                  />
-                  </Link>
-                </div>
-                <div>
-                  <div className='dialog_detail_title'><p>{p[1]}</p></div>
-                </div>
+                  <div>
+                    <img 
+                      src={"https://gdimg.gmarket.co.kr/" + parseInt(p[0]) + "/still/300"}
+                      className='dialog_img'
+                      alt={"최근본상품"}
+                    />
+                  </div>
+                  <div>
+                    <Link 
+                        to={`/detail/${p[0]}`}
+                        style={{ textDecoration: "none" }}
+                        onClick={() => dispatch(setIsClick(isClick))}
+                        state={{
+                            productId: parseInt(p[0]), 
+                            title: p[1],
+                            price: p[2]
+                    }}> 
+                      <div className='dialog_detail_title'><p>{p[1]}</p></div>
+                    </Link>
+                  </div>
               </div>
             )
           })}

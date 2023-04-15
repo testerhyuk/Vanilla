@@ -13,6 +13,7 @@ import Nav from './components/mainpage/Nav';
 import Footer from './components/mainpage/Footer';
 import RecentWatched from './components/recent/RecentWatched';
 import MyPage from './components/mypage/MyPage';
+import Pay from './components/deal/Pay';
 
 const Layout = () => {
   return (
@@ -57,6 +58,7 @@ function App() {
             <Route path='category/:sex/:cat' element={<Category />} />
             <Route path='search' element={<SearchPage />} />
             <Route path='my-page' element={<MyPage />} />
+            <Route path='pay' element={<Pay />} />
           </Route>
           <Route path='register' element={<Register />} />
           <Route path='register/email' element={<RegisterEmail />} />

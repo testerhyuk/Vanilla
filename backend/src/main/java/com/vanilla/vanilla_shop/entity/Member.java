@@ -32,6 +32,9 @@ public class Member {
    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
    List<Wish> wishes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    List<Cart> carts = new ArrayList<>();
+
    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
    List<Review> reviews = new ArrayList<>();
 
