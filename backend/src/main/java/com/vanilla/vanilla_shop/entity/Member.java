@@ -41,7 +41,7 @@ public class Member {
     @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
     List<Deal> deals = new ArrayList<>();
 
-   public void setPassword(String password) {
+    public void setPassword(String password) {
 
        this.password = password;
    }

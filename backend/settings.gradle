@@ -1,1 +1,2 @@
 rootProject.name = 'vanilla_shop'
+include 'consumer'

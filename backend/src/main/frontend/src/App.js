@@ -14,6 +14,7 @@ import Footer from './components/mainpage/Footer';
 import RecentWatched from './components/recent/RecentWatched';
 import MyPage from './components/mypage/MyPage';
 import Pay from './components/deal/Pay';
+import Event from './components/event/Event';
 
 const Layout = () => {
   return (
@@ -63,6 +64,7 @@ function App() {
           <Route path='register' element={<Register />} />
           <Route path='register/email' element={<RegisterEmail />} />
           <Route path='login' element={<Login />} />
+          <Route path='event' element={<Event />} />
         </Routes>
     </div>
   );
